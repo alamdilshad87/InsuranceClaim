@@ -1,0 +1,51 @@
+﻿Problem Statement
+
+Develop a RESTful Web API for an Insurance Claim Eligibility system.
+The system must enforce insurance business rules, not just basic CRUD.
+
+Database Schema
+CREATE TABLE Policies (
+    PolicyId INT IDENTITY PRIMARY KEY,
+    PolicyNumber VARCHAR(50),
+    CoverageAmount DECIMAL(12,2),
+    StartDate DATE,
+    EndDate DATE,
+    Status VARCHAR(20) -- Active, Suspended, Expired
+);
+
+CREATE TABLE Claims (
+    ClaimId INT IDENTITY PRIMARY KEY,
+    PolicyId INT,
+    ClaimAmount DECIMAL(12,2),
+    ClaimDate DATE,
+    Status VARCHAR(20) -- Submitted, Approved, Rejected
+);
+
+
+APIs
+1.Submit Claim
+
+Rules:
+
+-Policy must be Active
+-ClaimDate must be within policy period
+-Total Approved + Submitted claim amount must not exceed CoverageAmount
+-Only one claim per policy per day
+-Claim status must default to Submitted
+
+2.Approve Claim
+
+Rules:
+
+-Only Submitted claims can be approved
+-Recheck coverage before approval
+-Once approved, claim cannot be modified again
+
+3.Policy Claim Summary
+
+"policyNumber": "POL123",
+  "coverageAmount": 500000,
+  "totalClaimsRaised": 4,
+  "totalApprovedAmount": 320000,
+  "remainingCoverage": 180000
+

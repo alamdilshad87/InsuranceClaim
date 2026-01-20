@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BusinessLayer/BusinessLayer.csproj" />
+  <Project Path="DatabaseLayer/DatabaseLayer.csproj" />
+  <Project Path="InsuranceClaim/InsuranceClaim.csproj" />
+  <Project Path="ModelLayer/ModelLayer.csproj" />
+</Solution>
